@@ -331,8 +331,8 @@ export default function App() {
           onOpenUserModal={() => setIsUserModalOpen(true)}
         />
 
-        {/* Main Content Area (padding matches sticky header) */}
-        <main className="flex-1 px-4 pt-28 pb-8">
+        {/* Main Content Area (natural spacing with sticky header) */}
+        <main className="flex-1 px-4 pt-4 pb-8">
           {currentTab === 'menu' && (
             <StudentMenu
               products={products}

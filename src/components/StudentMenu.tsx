@@ -55,21 +55,23 @@ export const StudentMenu: React.FC<StudentMenuProps> = ({
 
   return (
     <div className="space-y-4 pb-24">
-      {/* Sub-Tabs: Menú y Pedir vs Rastreador */}
-      <div className="flex bg-slate-200/80 p-1 rounded-xl text-xs font-bold text-slate-700 shadow-inner">
+      {/* Sub-Tabs: Menú y Pedir vs Rastreador en Vivo */}
+      <div className="bg-slate-200/70 p-1 rounded-2xl flex items-center border border-slate-200/60 shadow-xs">
         <button
-          className="flex-1 py-2 rounded-lg text-center transition bg-white text-blue-700 shadow-sm flex items-center justify-center gap-1.5"
+          type="button"
+          className="flex-1 py-2.5 px-3 rounded-xl text-center bg-white text-blue-700 shadow-[0_2px_8px_rgba(0,0,0,0.06)] font-extrabold text-xs flex items-center justify-center gap-2 transition-all active:scale-95"
         >
-          <span className="material-symbols-outlined text-[16px]">restaurant_menu</span>
+          <span className="material-symbols-outlined text-[18px] text-blue-600">restaurant</span>
           <span>Menú y Pedir</span>
         </button>
         <button
+          type="button"
           onClick={onGoToTracker}
-          className="flex-1 py-2 rounded-lg text-center transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5 relative"
+          className="flex-1 py-2.5 px-3 rounded-xl text-center text-slate-600 hover:text-slate-900 font-bold text-xs flex items-center justify-center gap-2 transition-all hover:bg-white/40 active:scale-95"
         >
-          <span className="material-symbols-outlined text-[16px]">schedule</span>
+          <span className="material-symbols-outlined text-[18px] text-slate-500">schedule</span>
           <span>Rastreador en Vivo</span>
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span className="w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-emerald-200 animate-pulse shrink-0"></span>
         </button>
       </div>
 
