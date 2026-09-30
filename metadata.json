@@ -1,0 +1,7 @@
+{
+  "name": "Cafetería IUSH - Sistema de Pedidos y Gestión",
+  "description": "Aplicación oficial de Cafetería IUSH: menú universitario, pedidos móviles, rastreador en vivo y panel de comanda e inventario para la cafetería.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
