@@ -71,7 +71,7 @@ export default function App() {
     }
   };
 
-  // Bottom tab navigation
+  // Bottom / Top tab navigation
   const handleSelectTab = (tab: 'menu' | 'tracker' | 'orders' | 'inventory') => {
     playAudioFeedback(550, 0.08);
     setCurrentTab(tab);
@@ -122,7 +122,6 @@ export default function App() {
     paymentMethod: 'Saldo IUSH' | 'Nequi' | 'Daviplata' | 'Efectivo en Caja',
     total: number
   ) => {
-    // Generate new order number
     const newOrderNumber = 2053 + orders.length;
     const newId = `ORD-${newOrderNumber}`;
 
@@ -308,110 +307,111 @@ export default function App() {
 
   const pendingOrdersCount = orders.filter((o) => o.status === 'pendiente').length;
   const cartTotalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const cartTotalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-start text-slate-800 antialiased">
-      {/* Mobile/PWA frame container: perfectly optimized for phones and centered on desktop */}
-      <div className="w-full max-w-md bg-slate-50 min-h-screen flex flex-col relative border-x border-slate-200/80 shadow-2xl overflow-x-hidden">
-        {/* Global Toast */}
-        <Toast
-          message={toast.message}
-          icon={toast.icon}
-          visible={toast.visible}
-        />
+    <div className="min-h-screen bg-slate-100 flex flex-col text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+      {/* Global Toast */}
+      <Toast
+        message={toast.message}
+        icon={toast.icon}
+        visible={toast.visible}
+      />
 
-        {/* Top Header */}
-        <Header
-          currentTab={currentTab}
-          activeRole={activeRole}
-          onRoleChange={handleRoleChange}
-          cartCount={cartTotalItems}
-          onOpenCart={() => setIsCartOpen(true)}
-          user={user}
-          onOpenUserModal={() => setIsUserModalOpen(true)}
-        />
+      {/* Top Header: 100% Fluid on Mobile, Tablet & Desktop */}
+      <Header
+        currentTab={currentTab}
+        onSelectTab={handleSelectTab}
+        activeRole={activeRole}
+        onRoleChange={handleRoleChange}
+        cartCount={cartTotalItems}
+        cartTotal={cartTotalPrice}
+        onOpenCart={() => setIsCartOpen(true)}
+        user={user}
+        onOpenUserModal={() => setIsUserModalOpen(true)}
+        pendingOrdersCount={pendingOrdersCount}
+      />
 
-        {/* Main Content Area (natural spacing with sticky header) */}
-        <main className="flex-1 px-4 pt-4 pb-8">
-          {currentTab === 'menu' && (
-            <StudentMenu
-              products={products}
-              cart={cart}
-              onAddToCart={handleAddToCart}
-              onOpenCart={() => setIsCartOpen(true)}
-              onGoToTracker={() => setCurrentTab('tracker')}
-              user={user}
-              onRechargeBalance={() => setIsUserModalOpen(true)}
-            />
-          )}
+      {/* Main Content Area: Responsive container that gracefully expands up to max-w-7xl */}
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-20 md:pb-12">
+        {currentTab === 'menu' && (
+          <StudentMenu
+            products={products}
+            cart={cart}
+            onAddToCart={handleAddToCart}
+            onOpenCart={() => setIsCartOpen(true)}
+            onGoToTracker={() => setCurrentTab('tracker')}
+            user={user}
+            onRechargeBalance={() => setIsUserModalOpen(true)}
+          />
+        )}
 
-          {currentTab === 'tracker' && (
-            <StudentTracker
-              activeOrder={activeOrder}
-              pastOrders={pastOrders}
-              user={user}
-              onGoToMenu={() => setCurrentTab('menu')}
-              onAdvanceOrderStatus={handleAdvanceActiveOrder}
-              onReorder={handleReorder}
-              onShowToast={showToast}
-            />
-          )}
+        {currentTab === 'tracker' && (
+          <StudentTracker
+            activeOrder={activeOrder}
+            pastOrders={pastOrders}
+            user={user}
+            onGoToMenu={() => setCurrentTab('menu')}
+            onAdvanceOrderStatus={handleAdvanceActiveOrder}
+            onReorder={handleReorder}
+            onShowToast={showToast}
+          />
+        )}
 
-          {currentTab === 'orders' && (
-            <AdminOrders
-              orders={orders}
-              onUpdateOrderStatus={handleUpdateOrderStatus}
-              onCancelOrder={handleCancelOrder}
-              onSimulateNewOrder={handleSimulateNewOrder}
-              onShowToast={showToast}
-            />
-          )}
+        {currentTab === 'orders' && (
+          <AdminOrders
+            orders={orders}
+            onUpdateOrderStatus={handleUpdateOrderStatus}
+            onCancelOrder={handleCancelOrder}
+            onSimulateNewOrder={handleSimulateNewOrder}
+            onShowToast={showToast}
+          />
+        )}
 
-          {currentTab === 'inventory' && (
-            <AdminInventory
-              products={products}
-              onToggleStock={handleToggleProductStock}
-              onUpdateProductPrice={handleUpdateProductPrice}
-              onUpdatePortions={handleUpdatePortions}
-              onAddProduct={handleAddProduct}
-              onDeleteProduct={handleDeleteProduct}
-              onGoToOrders={() => setCurrentTab('orders')}
-              onShowToast={showToast}
-            />
-          )}
-        </main>
+        {currentTab === 'inventory' && (
+          <AdminInventory
+            products={products}
+            onToggleStock={handleToggleProductStock}
+            onUpdateProductPrice={handleUpdateProductPrice}
+            onUpdatePortions={handleUpdatePortions}
+            onAddProduct={handleAddProduct}
+            onDeleteProduct={handleDeleteProduct}
+            onGoToOrders={() => setCurrentTab('orders')}
+            onShowToast={showToast}
+          />
+        )}
+      </main>
 
-        {/* Fixed Bottom Navigation (4 tabs: Menú, Mis Pedidos, Gestión, Inventario) */}
-        <BottomNav
-          currentTab={currentTab}
-          onSelectTab={handleSelectTab}
-          pendingOrdersCount={pendingOrdersCount}
-        />
+      {/* Fixed Bottom Navigation (Mobile Only, md:hidden) */}
+      <BottomNav
+        currentTab={currentTab}
+        onSelectTab={handleSelectTab}
+        pendingOrdersCount={pendingOrdersCount}
+      />
 
-        {/* Cart Drawer & Checkout Sheet */}
-        <CartDrawer
-          isOpen={isCartOpen}
-          onClose={() => setIsCartOpen(false)}
-          cart={cart}
-          onUpdateQty={handleUpdateCartQty}
-          onRemoveItem={handleRemoveCartItem}
-          onConfirmOrder={handleConfirmOrder}
-          user={user}
-          onShowToast={showToast}
-        />
+      {/* Responsive Cart Drawer: Bottom Sheet on Mobile, Slide-Over on Desktop */}
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cart={cart}
+        onUpdateQty={handleUpdateCartQty}
+        onRemoveItem={handleRemoveCartItem}
+        onConfirmOrder={handleConfirmOrder}
+        user={user}
+        onShowToast={showToast}
+      />
 
-        {/* User Profile / Student Credentials Modal */}
-        <UserProfileModal
-          isOpen={isUserModalOpen}
-          onClose={() => setIsUserModalOpen(false)}
-          user={user}
-          onSelectUser={(selected) => setUser(selected)}
-          onRecharge={(amount) =>
-            setUser((prev) => ({ ...prev, balance: prev.balance + amount }))
-          }
-          onShowToast={showToast}
-        />
-      </div>
+      {/* User Profile / Student Credentials Modal */}
+      <UserProfileModal
+        isOpen={isUserModalOpen}
+        onClose={() => setIsUserModalOpen(false)}
+        user={user}
+        onSelectUser={(selected) => setUser(selected)}
+        onRecharge={(amount) =>
+          setUser((prev) => ({ ...prev, balance: prev.balance + amount }))
+        }
+        onShowToast={showToast}
+      />
     </div>
   );
 }

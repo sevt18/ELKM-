@@ -109,110 +109,114 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
   };
 
   return (
-    <div className="space-y-4 pb-24">
+    <div className="space-y-5 pb-24 md:pb-12">
       {/* Sub-bar Toggle: Pedidos en Vivo vs Inventario y Menú */}
-      <div className="flex items-center justify-between bg-slate-200/80 p-1 rounded-xl shadow-inner text-xs font-bold">
+      <div className="max-w-md mx-auto flex items-center justify-between bg-slate-200/70 p-1 rounded-2xl shadow-inner text-xs sm:text-sm font-bold border border-slate-200/80">
         <button
           onClick={onGoToOrders}
-          className="flex-1 py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900 transition-all"
+          className="flex-1 py-2 sm:py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900 transition-all hover:bg-white/40 active:scale-95"
         >
-          <span className="material-symbols-outlined text-[16px]">soup_kitchen</span>
+          <span className="material-symbols-outlined text-[18px]">soup_kitchen</span>
           <span>Pedidos en Vivo</span>
         </button>
-        <button className="flex-1 py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 bg-blue-700 text-white shadow-sm transition-all">
-          <span className="material-symbols-outlined text-[16px]">inventory_2</span>
+        <button className="flex-1 py-2 sm:py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-sm transition-all">
+          <span className="material-symbols-outlined text-[18px]">inventory_2</span>
           <span>Inventario y Menú</span>
         </button>
       </div>
 
       {/* KPI Bento Grid */}
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         {/* Activos */}
-        <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+            <span className="text-[10px] sm:text-xs uppercase font-bold text-slate-500 tracking-wider">
               Activos
             </span>
-            <span className="w-5 h-5 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center">
-              <span className="material-symbols-outlined text-[12px]">check_circle</span>
+            <span className="w-7 h-7 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+              <span className="material-symbols-outlined text-[16px]">check_circle</span>
             </span>
           </div>
-          <div className="mt-2">
-            <span className="text-xl font-black text-slate-900 leading-tight">{activeCount}</span>
-            <p className="text-[10px] text-slate-500 truncate font-medium">En carta hoy</p>
+          <div className="mt-3">
+            <span className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+              {activeCount}
+            </span>
+            <p className="text-xs text-slate-500 font-medium mt-0.5">En carta hoy</p>
           </div>
         </div>
 
         {/* Agotados */}
-        <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-rose-600 tracking-wider">
+            <span className="text-[10px] sm:text-xs uppercase font-bold text-rose-600 tracking-wider">
               Agotados
             </span>
-            <span className="w-5 h-5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center">
-              <span className="material-symbols-outlined text-[12px]">block</span>
+            <span className="w-7 h-7 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
+              <span className="material-symbols-outlined text-[16px]">block</span>
             </span>
           </div>
-          <div className="mt-2">
-            <span className="text-xl font-black text-rose-600 leading-tight">
+          <div className="mt-3">
+            <span className="text-2xl sm:text-3xl font-black text-rose-600 leading-tight">
               {outOfStockCount}
             </span>
-            <p className="text-[10px] text-slate-500 truncate font-medium">Requieren reposición</p>
+            <p className="text-xs text-slate-500 font-medium mt-0.5">Requieren reposición</p>
           </div>
         </div>
 
         {/* Top Ventas */}
-        <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase font-bold text-amber-700 tracking-wider">
+            <span className="text-[10px] sm:text-xs uppercase font-bold text-amber-700 tracking-wider">
               Top Ventas
             </span>
-            <span className="w-5 h-5 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center">
-              <span className="material-symbols-outlined text-[12px]">star</span>
+            <span className="w-7 h-7 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+              <span className="material-symbols-outlined text-[16px]">star</span>
             </span>
           </div>
-          <div className="mt-2">
-            <span className="text-xs font-bold text-slate-900 truncate block">Almuerzos</span>
-            <p className="text-[10px] text-amber-700 font-bold truncate">+92 pedidos</p>
+          <div className="mt-3">
+            <span className="text-base sm:text-lg font-black text-slate-900 truncate block">
+              Almuerzos Ejecutivos
+            </span>
+            <p className="text-xs text-amber-700 font-bold mt-0.5">+92 pedidos despachados</p>
           </div>
         </div>
       </div>
 
       {/* Search Bar + Nuevo Button */}
-      <div className="flex items-center gap-2">
-        <div className="relative flex-1">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="relative flex-1 max-w-lg">
+          <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">
             search
           </span>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar empanada, jugo, almuerzo..."
-            className="w-full bg-white text-xs text-slate-900 pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 placeholder:text-slate-400"
+            placeholder="Buscar empanada, jugo, almuerzo por nombre..."
+            className="w-full bg-white text-xs sm:text-sm text-slate-900 pl-10 pr-3 py-2.5 sm:py-3 rounded-2xl border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 placeholder:text-slate-400"
           />
         </div>
 
         <button
           onClick={() => setShowNewModal(true)}
-          className="shrink-0 bg-blue-700 hover:bg-blue-800 text-white px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm active:scale-95 transition"
+          className="shrink-0 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 sm:py-3 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition"
         >
           <span className="material-symbols-outlined text-[18px]">add_circle</span>
-          <span>+ Nuevo</span>
+          <span>+ Nuevo Producto</span>
         </button>
       </div>
 
       {/* Category Filter Pills */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 -mx-4 px-4 no-scrollbar">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
         {categories.map((cat) => {
           const isActive = selectedCat === cat.id;
           return (
             <button
               key={cat.id}
               onClick={() => setSelectedCat(cat.id)}
-              className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap ${
+              className={`shrink-0 px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition whitespace-nowrap ${
                 isActive
-                  ? 'bg-blue-700 text-white shadow-sm'
+                  ? 'bg-blue-600 text-white shadow-sm'
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
               }`}
             >
@@ -222,19 +226,19 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
         })}
       </div>
 
-      {/* Product List */}
-      <div className="space-y-3">
+      {/* Product Grid (1 col on mobile, 2 cols on md, 3 cols on xl!) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {filteredProducts.map((p) => {
           return (
             <div
               key={p.id}
-              className={`bg-white rounded-2xl p-3.5 border border-slate-200 shadow-sm flex flex-col gap-3 transition-all hover:border-slate-300 ${
+              className={`bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col justify-between gap-3.5 transition-all hover:border-blue-400 hover:shadow-md ${
                 !p.available ? 'opacity-75 bg-slate-50/70' : ''
               }`}
             >
               {/* Product Info */}
-              <div className="flex items-start gap-3">
-                <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
+              <div className="flex items-start gap-3.5">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
                   <img
                     src={p.image}
                     alt={p.name}
@@ -245,7 +249,7 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                   />
                   {!p.available && (
                     <div className="absolute inset-0 bg-slate-900/60 flex items-center justify-center">
-                      <span className="text-[9px] font-black text-white uppercase tracking-wider px-1">
+                      <span className="text-[10px] font-black text-white uppercase tracking-wider px-1">
                         Agotado
                       </span>
                     </div>
@@ -254,23 +258,23 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                    <span className="text-[10px] uppercase font-black tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
                       {p.category}
                     </span>
                     <span className="text-[10px] text-slate-400 font-mono">ID: #{p.id}</span>
                   </div>
-                  <h4 className="text-xs font-bold text-slate-900 truncate mt-1">{p.name}</h4>
-                  <p className="text-[11px] text-slate-500 truncate">{p.description}</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 truncate mt-1">{p.name}</h4>
+                  <p className="text-[11px] sm:text-xs text-slate-500 line-clamp-2 mt-0.5">{p.description}</p>
                 </div>
               </div>
 
               {/* Inset Controls: Price, Portions, Availability Toggle */}
-              <div className="flex items-center justify-between bg-slate-50 border border-slate-100 px-3 py-2 rounded-xl">
+              <div className="flex items-center justify-between bg-slate-50 border border-slate-100 px-3.5 py-2.5 rounded-xl">
                 {/* Price input */}
                 <div className="flex flex-col">
-                  <span className="text-[9px] text-slate-400 uppercase font-bold">Precio Unitario</span>
+                  <span className="text-[10px] text-slate-400 uppercase font-bold">Precio Unitario</span>
                   <div className="flex items-center gap-0.5">
-                    <span className="text-xs font-bold text-slate-700">$</span>
+                    <span className="text-xs sm:text-sm font-bold text-slate-700">$</span>
                     <input
                       type="text"
                       defaultValue={p.price.toLocaleString('es-CO')}
@@ -280,7 +284,7 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                           handlePriceChange(p.id, (e.target as HTMLInputElement).value);
                         }
                       }}
-                      className="w-16 bg-transparent text-xs font-bold text-slate-900 focus:outline-none focus:bg-white rounded px-1"
+                      className="w-20 bg-transparent text-xs sm:text-sm font-black text-slate-900 focus:outline-none focus:bg-white rounded px-1"
                       title="Editar precio unitario"
                     />
                   </div>
@@ -289,15 +293,15 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                 {/* Portions counter */}
                 <div className="flex items-center gap-3">
                   <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase font-bold text-slate-400">Porciones</span>
-                    <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-lg px-1.5 py-0.5 shadow-2xs">
+                    <span className="text-[10px] uppercase font-bold text-slate-400">Porciones</span>
+                    <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-lg px-2 py-0.5 shadow-2xs">
                       <button
                         onClick={() => onUpdatePortions(p.id, -1)}
                         className="text-slate-500 hover:text-blue-700 font-black text-xs px-1"
                       >
                         -
                       </button>
-                      <span className="text-xs font-black text-slate-900 w-5 text-center">
+                      <span className="text-xs font-black text-slate-900 w-6 text-center">
                         {p.portions}
                       </span>
                       <button
@@ -312,7 +316,7 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                   {/* Stock Toggle Switch */}
                   <div className="flex flex-col items-end">
                     <span
-                      className={`text-[9px] uppercase font-bold ${
+                      className={`text-[10px] uppercase font-black ${
                         p.available ? 'text-emerald-700' : 'text-rose-600'
                       }`}
                     >
@@ -339,9 +343,9 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
               <div className="flex items-center justify-end gap-2 pt-0.5">
                 <button
                   onClick={() => onShowToast(`Editando parámetros de: ${p.name}`, 'edit')}
-                  className="text-xs font-semibold text-slate-600 hover:text-blue-700 flex items-center gap-1 py-1 px-2.5 rounded-lg hover:bg-slate-100 transition"
+                  className="text-xs font-semibold text-slate-600 hover:text-blue-700 flex items-center gap-1 py-1 px-3 rounded-lg hover:bg-slate-100 transition"
                 >
-                  <span className="material-symbols-outlined text-[15px]">edit</span>
+                  <span className="material-symbols-outlined text-[16px]">edit</span>
                   <span>Editar Detalle</span>
                 </button>
                 <button
@@ -351,9 +355,9 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                       onShowToast(`"${p.name}" eliminado de la carta`, 'delete');
                     }
                   }}
-                  className="text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1 py-1 px-2.5 rounded-lg hover:bg-rose-50 transition"
+                  className="text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1 py-1 px-3 rounded-lg hover:bg-rose-50 transition"
                 >
-                  <span className="material-symbols-outlined text-[15px]">delete</span>
+                  <span className="material-symbols-outlined text-[16px]">delete</span>
                   <span>Eliminar</span>
                 </button>
               </div>
@@ -365,13 +369,16 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
       {/* Modal: Crear Nuevo Producto */}
       {showNewModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
-          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-5 flex flex-col space-y-4 max-h-[90vh] overflow-y-auto border border-slate-200">
-            <div className="flex items-center justify-between pb-1 border-b border-slate-100">
-              <div className="flex items-center gap-2">
-                <span className="w-8 h-8 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
-                  <span className="material-symbols-outlined text-[18px]">post_add</span>
+          <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 flex flex-col space-y-4 max-h-[90vh] overflow-y-auto border border-slate-200">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <span className="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+                  <span className="material-symbols-outlined text-[20px]">post_add</span>
                 </span>
-                <h3 className="font-bold text-sm text-slate-900">Nuevo Producto en Cafetería</h3>
+                <div>
+                  <h3 className="font-black text-sm sm:text-base text-slate-900">Nuevo Producto en Cafetería</h3>
+                  <p className="text-xs text-slate-500">Añade platos, bebidas o combos a la carta</p>
+                </div>
               </div>
               <button
                 onClick={() => setShowNewModal(false)}
@@ -381,9 +388,9 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
               </button>
             </div>
 
-            <form onSubmit={handleFormSubmit} className="space-y-3.5">
+            <form onSubmit={handleFormSubmit} className="space-y-4">
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                   Nombre del Producto
                 </label>
                 <input
@@ -392,13 +399,13 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="Ej: Sándwich de Pollo Gratinado"
-                  className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                     Categoría
                   </label>
                   <select
@@ -408,7 +415,7 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                         e.target.value as 'almuerzos' | 'snacks' | 'bebidas' | 'desayunos'
                       )
                     }
-                    className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 rounded-xl focus:outline-none"
+                    className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 rounded-xl focus:outline-none"
                   >
                     <option value="almuerzos">Almuerzos</option>
                     <option value="snacks">Snacks</option>
@@ -418,7 +425,7 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                     Precio (COP)
                   </label>
                   <input
@@ -427,13 +434,13 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                     value={newPrice}
                     onChange={(e) => setNewPrice(e.target.value)}
                     placeholder="Ej: 5.500"
-                    className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                   Descripción corta
                 </label>
                 <textarea
@@ -441,12 +448,12 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                   value={newDesc}
                   onChange={(e) => setNewDesc(e.target.value)}
                   placeholder="Ingredientes principales, presentación o tamaño..."
-                  className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 rounded-xl focus:outline-none resize-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 rounded-xl focus:outline-none resize-none focus:ring-2 focus:ring-blue-600"
                 ></textarea>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                   URL de Imagen (Opcional)
                 </label>
                 <input
@@ -454,14 +461,14 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                   value={newImg}
                   onChange={(e) => setNewImg(e.target.value)}
                   placeholder="Enlace https:// o dejar vacío para foto estándar"
-                  className="w-full bg-slate-50 border border-slate-200 px-3 py-2 text-xs text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
               </div>
 
-              <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-800">Disponibilidad Inmediata</span>
-                  <span className="text-[10px] text-slate-500">¿Habilitar en el catálogo de estudiantes?</span>
+                  <span className="text-xs sm:text-sm font-bold text-slate-900">Disponibilidad Inmediata</span>
+                  <span className="text-xs text-slate-500">¿Habilitar en el catálogo de estudiantes?</span>
                 </div>
                 <button
                   type="button"
@@ -478,17 +485,17 @@ export const AdminInventory: React.FC<AdminInventoryProps> = ({
                 </button>
               </div>
 
-              <div className="pt-2 flex items-center gap-2">
+              <div className="pt-2 flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setShowNewModal(false)}
-                  className="flex-1 py-2.5 rounded-xl font-bold text-xs text-slate-600 bg-slate-100 hover:bg-slate-200 transition"
+                  className="flex-1 py-3 rounded-xl font-bold text-xs sm:text-sm text-slate-600 bg-slate-100 hover:bg-slate-200 transition"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl font-bold text-xs bg-blue-700 hover:bg-blue-800 text-white shadow-md transition"
+                  className="flex-1 py-3 rounded-xl font-bold text-xs sm:text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-md transition"
                 >
                   Publicar en Menú
                 </button>
